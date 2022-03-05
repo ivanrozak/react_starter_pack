@@ -1,22 +1,28 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTest } from './redux/auth/action'
 
 function App() {
+  const dispatch = useDispatch()
+  const [sample, setSample] = useState('')
+  const dataTest = useSelector((state) => state.auth)
+  const test = (data) => {
+    console.log(data)
+    dispatch(getTest(data))
+  }
+  const handleChange = (data) => {
+    setSample(data.target.value)
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {JSON.stringify(dataTest)}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <input className='text-black border border-black' value={sample} onChange={handleChange} />
+        <button onClick={() => test(sample)}>test</button>
+        <p className='text-3xl font-extrabold'>Starter template React with tailwind, redux and axios</p>
       </header>
     </div>
   );
