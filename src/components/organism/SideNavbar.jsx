@@ -1,42 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import _ from "lodash";
+import { routeList } from "../../routes/routeList";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 export default function SideNavbar() {
+  const [listMenu, setListMenu] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setListMenu(
+      _.filter(routeList, (obj) => {
+        return obj.path !== "*" && obj.path !== "/auth";
+      })
+    );
+  }, []);
+
+  const handleNavigate = (base, child) => {
+    if (child) {
+      if (base === "/") {
+        navigate(`/${child}`);
+      } else {
+        navigate(`${base}/${child}`);
+      }
+    } else {
+      navigate(base);
+    }
+  };
+
   return (
     <>
-      <Sider width={200} className="site-layout-background">
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
-          style={{ height: "100%", borderRight: 0 }}
-        >
-          <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-            <Menu.Item key="1">option1</Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-            <Menu.Item key="5">option5</Menu.Item>
-            <Menu.Item key="6">option6</Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
-          </SubMenu>
+      <Sider width={280} className="overflow-y-auto">
+        <Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
+          {listMenu.map((item, index) => {
+            return (
+              <SubMenu key={index} icon={item.icon} title={item.title}>
+                {item.children.map((child) => {
+                  return (
+                    <Menu.Item
+                      key={child.title}
+                      onClick={() => handleNavigate(item.path, child.path)}
+                    >
+                      {child.title}
+                    </Menu.Item>
+                  );
+                })}
+              </SubMenu>
+            );
+          })}
         </Menu>
       </Sider>
     </>

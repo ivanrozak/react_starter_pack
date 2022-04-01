@@ -15,15 +15,15 @@ export default function TopNavbar() {
         </div>
         <div className="flex items-center">
           <BellFilled />
-          <Divider type="vertical" />
+          <Divider type="vertical" style={{ height: "2em" }} />
           <div className="flex items-center">
             <UserOutlined />
             <div className="ml-3">
               <div className="leading-none">Hi, John Doe</div>
-              <div className="leading-none">Super Admin</div>
+              <div className="leading-none mt-1 text-xs">Super Admin</div>
             </div>
           </div>
-          <Divider type="vertical" />
+          <Divider type="vertical" style={{ height: "2em" }} />
           <DownOutlined />
         </div>
       </Header>

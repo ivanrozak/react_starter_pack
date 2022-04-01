@@ -9,17 +9,16 @@ const { Content } = Layout;
 export default function DashboardLayout() {
   return (
     <>
-      <Layout>
+      <Layout className="h-screen">
         <TopNavbar />
         <Layout>
           <SideNavbar />
           <Layout>
             <Content
-              className="site-layout-background"
+              className="bg-custom overflow-y-auto"
               style={{
                 padding: 24,
                 margin: 0,
-                minHeight: 280,
               }}
             >
               <Outlet />
