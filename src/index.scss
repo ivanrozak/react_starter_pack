@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Custom antd element
+.ant-layout {
+  .ant-layout-header {
+    background: white;
+  }
+}

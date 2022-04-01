@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTest } from './redux/auth/action'
 
