@@ -10,24 +10,24 @@
   font-family: 'Inter', sans-serif;
 }
 
-// ============================================================
-// Custom antd element styles
-// .ant-layout {
-//   .ant-layout-header {
-//     background: white;
-//   }
-// }
-// .ant-table {
-//   .ant-table-thead>tr>th {
-//     background: white;
-//   }
-// }
-// .ant-input {
-//   border-radius: 5px !important;
-// }
-
-// =============================================================
-// Custom classes
 .bg-custom {
   background: #F3FBFF;
+}
+
+.ant-pagination {
+  @apply flex order-5;
+
+  .ant-pagination-item-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ant-pagination-total-text {
+    @apply mr-auto;
+  }
+  
+  .ant-pagination-options {
+    @apply float-left;
+  }
 }
