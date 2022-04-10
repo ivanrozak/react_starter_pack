@@ -2,13 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-// Custom antd element
-.ant-layout {
-  .ant-layout-header {
-    background: white;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import './assets//styles/_customUI.scss';
+
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
+// ============================================================
+// Custom antd element styles
+// .ant-layout {
+//   .ant-layout-header {
+//     background: white;
+//   }
+// }
+// .ant-table {
+//   .ant-table-thead>tr>th {
+//     background: white;
+//   }
+// }
+// .ant-input {
+//   border-radius: 5px !important;
+// }
+
+// =============================================================
+// Custom classes
 .bg-custom {
   background: #F3FBFF;
 }

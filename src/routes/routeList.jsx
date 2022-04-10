@@ -3,10 +3,25 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AuthLayout from "../layouts/AuthLayout";
 
 import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
+  HomeIcon,
+  UserIcon,
+  ReportIcon,
+  SettingIcon,
+  UserGroupIcon,
+  InfoIcon,
+  PicturesIcon,
+  DiscountIcon,
+  CardIcon,
+  MenuIcon,
+  SquareBlockIcon,
+  NotesIcon,
+} from "../components/atoms/Icons";
+
+// import {
+//   UserOutlined,
+//   LaptopOutlined,
+//   NotificationOutlined,
+// } from "@ant-design/icons";
 
 const CekTokoObat = React.lazy(() => import("../pages/Dashboard/CekTokoObat"));
 const CustomerList = React.lazy(() =>
@@ -24,7 +39,7 @@ export const routeList = [
     path: "/",
     title: "Dashboard",
     element: <DashboardLayout />,
-    icon: <UserOutlined />,
+    icon: <HomeIcon />,
     children: [
       {
         index: true,
@@ -42,7 +57,7 @@ export const routeList = [
     path: "/admin",
     title: "Admin",
     element: <DashboardLayout />,
-    icon: <LaptopOutlined />,
+    icon: <UserIcon />,
     children: [
       {
         index: true,
@@ -55,7 +70,7 @@ export const routeList = [
     path: "/customers",
     title: "Pelanggan",
     element: <DashboardLayout />,
-    icon: <NotificationOutlined />,
+    icon: <UserGroupIcon />,
     children: [
       {
         index: true,

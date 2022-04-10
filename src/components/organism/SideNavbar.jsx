@@ -35,10 +35,15 @@ export default function SideNavbar() {
   return (
     <>
       <Sider width={280} className="overflow-y-auto">
-        <Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
-          {listMenu.map((item, index) => {
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={["List Admin"]}
+          defaultOpenKeys={["/admin"]}
+          style={{ height: "100%", borderRight: 0 }}
+        >
+          {listMenu.map((item) => {
             return (
-              <SubMenu key={index} icon={item.icon} title={item.title}>
+              <SubMenu key={item.path} icon={item.icon} title={item.title}>
                 {item.children.map((child) => {
                   return (
                     <Menu.Item
