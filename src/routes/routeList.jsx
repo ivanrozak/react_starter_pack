@@ -17,12 +17,6 @@ import {
   NotesIcon,
 } from "../components/atoms/Icons";
 
-// import {
-//   UserOutlined,
-//   LaptopOutlined,
-//   NotificationOutlined,
-// } from "@ant-design/icons";
-
 const CekTokoObat = React.lazy(() => import("../pages/Dashboard/CekTokoObat"));
 const CustomerList = React.lazy(() =>
   import("../pages/Customers/CustomerList")
@@ -44,10 +38,12 @@ export const routeList = [
       {
         index: true,
         title: "Dashboard Distributor",
+        key: "/",
         element: <Suspense fallback="loading...." children={<Dashboard />} />,
       },
       {
         path: "cektokoobat",
+        key: "/cektokoobat",
         title: "dashboard Cek Toko Obat",
         element: <Suspense fallback="loading...." children={<CekTokoObat />} />,
       },
@@ -61,6 +57,7 @@ export const routeList = [
     children: [
       {
         index: true,
+        key: "/admin",
         title: "List Admin",
         element: <Suspense fallback="loading...." children={<ListAdmin />} />,
       },
@@ -74,6 +71,7 @@ export const routeList = [
     children: [
       {
         index: true,
+        key: "/customers",
         title: "List Pelanggan",
         element: (
           <Suspense fallback="loading...." children={<CustomerList />} />
@@ -81,6 +79,7 @@ export const routeList = [
       },
       {
         path: "verification",
+        key: "/customers/verification",
         title: "Verifikasi Pelanggan",
         element: (
           <Suspense
