@@ -10,6 +10,12 @@
   font-family: 'Inter', sans-serif;
 }
 
+// Typhography
+h2 {
+  @apply text-lg font-semibold text-gray-700;
+  margin-bottom: 0 !important;
+}
+
 .bg-custom {
   background: #F3FBFF;
 }
@@ -29,5 +35,30 @@
   
   .ant-pagination-options {
     @apply float-left;
+  }
+}
+
+.content-section {
+  .header {
+    @apply flex justify-between items-center mb-5;
+  }
+  .body {
+    @apply bg-white shadow-md rounded-md w-full p-5;
+  }
+  .body-with-footer {
+    @apply bg-white shadow-md rounded-md w-full;
+    .body {
+      @apply p-5 pb-0;
+    }
+    .footer {
+      @apply p-5 pt-0;
+    }
+  }
+}
+
+
+.form-control {
+  .label {
+    @apply text-gray-700 mb-2;
   }
 }
