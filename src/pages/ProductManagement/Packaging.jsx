@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Table, Input } from "antd";
+import { Table, Input, Switch, Upload, message } from "antd";
+import BButton from "../../components/atoms/BButton";
+import FormInput from "../../components/molecules/FormInput";
+import {
+  PlusOutlined,
+  ArrowLeftOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
+
+const { TextArea } = Input;
 
 export default function Packaging() {
   const [section, setSection] = useState("default");
@@ -47,20 +56,69 @@ export default function Packaging() {
     },
   ];
 
-  const test = () => {
-    console.log("asd");
-  };
-
   const FormSection = () => {
+    const props = {
+      name: "file",
+      action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+      headers: {
+        authorization: "authorization-text",
+      },
+      onChange(info) {
+        if (info.file.status !== "uploading") {
+          console.log(info.file, info.fileList);
+        }
+        if (info.file.status === "done") {
+          message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === "error") {
+          message.error(`${info.file.name} file upload failed.`);
+        }
+      },
+    };
+
     return (
-      <div>
-        <h1>Add Data</h1>
-        <div className="form-control">
-          <div className="label">Ini Label ya</div>
-          <Input placeholder="asdasd" />
+      <>
+        <div className="content-section">
+          <div className="header">
+            <div className="flex items-center">
+              <BButton
+                className="p-2 h-full mr-3"
+                type="primary"
+                icon={<ArrowLeftOutlined />}
+                onClick={() => setSection("default")}
+              />
+              <div className="text-lg font-medium text-gray-600">
+                Menambahkan Kemasan
+              </div>
+            </div>
+          </div>
+          <div className="body-with-footer">
+            <div className="body-content grid grid-cols-2 gap-x-4">
+              <FormInput label="Nama Kemasan" required>
+                <Input placeholder="Ketikan Nama Kemasan" />
+              </FormInput>
+              <FormInput label="Status" required>
+                <Switch defaultChecked />
+              </FormInput>
+              <FormInput label="Status" required>
+                <TextArea
+                  rows={4}
+                  placeholder="Ketikan deskripsi"
+                  maxLength={6}
+                />
+              </FormInput>
+              <FormInput label="Upload Gambar" required>
+                <Upload {...props}>
+                  <BButton icon={<UploadOutlined />}>Click to Upload</BButton>
+                </Upload>
+              </FormInput>
+            </div>
+            <div className="footer">
+              <BButton>Batalkan</BButton>
+              <BButton type="primary">Simpan</BButton>
+            </div>
+          </div>
         </div>
-        <Button onClick={() => test()}>asdasd</Button>
-      </div>
+      </>
     );
   };
 
@@ -70,9 +128,13 @@ export default function Packaging() {
         <div className="content-section">
           <div className="header">
             <h2>Manage Kemasan</h2>
-            <Button type="primary" onClick={() => setSection("add")}>
+            <BButton
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => setSection("add")}
+            >
               Tambah Data
-            </Button>
+            </BButton>
           </div>
           <div className="body">
             <Table dataSource={data} columns={columns} pagination={false} />
