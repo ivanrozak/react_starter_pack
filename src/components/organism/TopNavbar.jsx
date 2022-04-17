@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Dropdown } from "antd";
+import { Layout, Menu, Dropdown, Badge } from "antd";
 import logo from "../../assets/icons/main-logo.png";
 import { BellFilled, DownOutlined, UserOutlined } from "@ant-design/icons";
 import { Divider } from "antd";
@@ -30,8 +30,14 @@ export default function TopNavbar() {
           <img src={logo} alt="" className="h-10" />
         </div>
         <div className="flex items-center">
-          <BellFilled style={{ fontSize: "18px", color: "gray" }} />
-          <Divider type="vertical" style={{ height: "2em" }} className="mx-4" />
+          <Badge size="small" count={5}>
+            <BellFilled style={{ fontSize: "18px", color: "#6B7280" }} />
+          </Badge>
+          <Divider
+            type="vertical"
+            style={{ height: "2em" }}
+            className="mx-4 border-gray-300"
+          />
           <div className="flex items-center">
             <UserOutlined
               style={{ fontSize: "16px", color: "gray" }}
@@ -46,11 +52,15 @@ export default function TopNavbar() {
               </div>
             </div>
           </div>
-          <Divider type="vertical" style={{ height: "2em" }} className="mx-4" />
+          <Divider
+            type="vertical"
+            style={{ height: "2em" }}
+            className="mx-4 border-gray-300"
+          />
           <Dropdown overlay={menu} placement="bottomRight">
             <DownOutlined
               onClick={(e) => e.preventDefault()}
-              style={{ fontSize: "16px", color: "gray", fontWeight: "bold" }}
+              style={{ fontSize: "16px", color: "#6B7280", fontWeight: "bold" }}
             />
           </Dropdown>
         </div>

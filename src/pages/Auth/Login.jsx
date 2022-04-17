@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import heroImg from "../../assets/images/hero-image.png";
 import logo from "../../assets/icons/main-logo.png";
 import FormInput from "../../components/molecules/FormInput";
 import BButton from "../../components/atoms/BButton";
-import { Form, Input } from "antd";
+import { Form, Input, Alert } from "antd";
 
 export default function Login() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [error, setError] = useState(false);
+
   const onFinish = (values) => {
     const { email, password } = values;
     if (email === "asd@asd.asd" && password === "asd") {
       localStorage.setItem("token", "asdasdasd");
       navigate("/");
     } else {
-      console.log("asdasd");
+      setError(true);
     }
   };
 
@@ -32,16 +34,28 @@ export default function Login() {
         <img src={heroImg} alt="" />
         <div className="card shadow-lg bg-white rounded-lg px-5 py-3 w-80">
           <img src={logo} alt="" className="h-10" />
-          <h3 className="text-lg text-gray-700 font-semibold py-2">Masuk</h3>
+          <h3 className="text-lg text-gray-700 font-semibold pt-2 pb-1">
+            Masuk
+          </h3>
+
+          {error && (
+            <Alert
+              message="email atau kata sandi salah!"
+              type="error"
+              showIcon
+              className="mb-2"
+            />
+          )}
+
           <Form
             form={form}
             layout="vertical"
             onFinish={onFinish}
             validateMessages={validateMessages}
+            onValuesChange={() => setError(false)}
           >
             <FormInput label="Email">
               <Form.Item
-                // className="m-0"
                 name="email"
                 rules={[
                   {
@@ -55,7 +69,6 @@ export default function Login() {
             </FormInput>
             <FormInput label="Kata Sandi">
               <Form.Item
-                // className="m-0"
                 name="password"
                 rules={[
                   {
