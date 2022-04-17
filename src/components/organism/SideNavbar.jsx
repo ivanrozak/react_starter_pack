@@ -15,10 +15,10 @@ export default function SideNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const listRoute = routeList().find((o) => o.path === "/");
+
   useEffect(() => {
-    const dataListMenu = _.filter(routeList, (obj) => {
-      return obj.path !== "*" && obj.path !== "/auth";
-    });
+    const dataListMenu = listRoute.children;
     dataListMenu.forEach((item, index) => {
       item.index = index;
     });

@@ -3,7 +3,8 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import { routeList } from "./routeList";
 
 const RouteRenderer = () => {
-  const element = useRoutes(routeList);
+  const isLoggedIn = true;
+  const element = useRoutes(routeList(isLoggedIn));
   return <React.Fragment>{element}</React.Fragment>;
 };
 
