@@ -1,19 +1,43 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu, Dropdown, Badge } from "antd";
+import {
+  Layout,
+  Menu,
+  Dropdown,
+  Badge,
+  Divider,
+  Modal,
+  notification,
+} from "antd";
 import logo from "../../assets/icons/main-logo.png";
 import { BellFilled, DownOutlined, UserOutlined } from "@ant-design/icons";
-import { Divider } from "antd";
+import { LockIcon, LogoutIcon } from "../atoms/Icons";
 
 const { Header } = Layout;
 
 export default function TopNavbar() {
   const navigate = useNavigate();
 
-  const menu = (
-    <Menu>
+  const dropdownMenu = (
+    <Menu className="divide-y-2">
       <Menu.Item key="0">
-        <div onClick={() => Logout()}>Logout</div>
+        <div className="flex items-center">
+          <div className="flex w-6 text-gray-600">
+            <LockIcon className="text-gray-600" />
+          </div>
+          Ubah Kata Sandi
+        </div>
+      </Menu.Item>
+      <Menu.Item key="1">
+        <div
+          onClick={() => confirmLogout()}
+          className="flex items-center text-danger"
+        >
+          <div className="flex w-6">
+            <LogoutIcon className="text-danger" />
+          </div>
+          Logout
+        </div>
       </Menu.Item>
     </Menu>
   );
@@ -21,6 +45,20 @@ export default function TopNavbar() {
   const Logout = () => {
     localStorage.removeItem("token");
     navigate("/auth/login");
+    notification.success({
+      message: "Keluar",
+      description: "Kamu berhasil keluar dari dashboard",
+    });
+  };
+
+  const confirmLogout = () => {
+    Modal.confirm({
+      title: "Keluar",
+      content: "Apakah anda yakin ingin keluar?",
+      okText: "Ya, Keluar",
+      cancelText: "Batalkan",
+      onOk: () => Logout(),
+    });
   };
 
   return (
@@ -57,7 +95,7 @@ export default function TopNavbar() {
             style={{ height: "2em" }}
             className="mx-4 border-gray-300"
           />
-          <Dropdown overlay={menu} placement="bottomRight">
+          <Dropdown overlay={dropdownMenu} placement="bottomRight">
             <DownOutlined
               onClick={(e) => e.preventDefault()}
               style={{ fontSize: "16px", color: "#6B7280", fontWeight: "bold" }}

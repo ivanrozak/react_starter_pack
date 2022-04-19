@@ -4,7 +4,7 @@ import heroImg from "../../assets/images/hero-image.png";
 import logo from "../../assets/icons/main-logo.png";
 import FormInput from "../../components/molecules/FormInput";
 import BButton from "../../components/atoms/BButton";
-import { Form, Input, Alert } from "antd";
+import { Form, Input, Alert, notification } from "antd";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,6 +16,10 @@ export default function Login() {
     if (email === "asd@asd.asd" && password === "asd") {
       localStorage.setItem("token", "asdasdasd");
       navigate("/");
+      notification.success({
+        message: "Masuk",
+        description: "Kamu berhasil masuk ke dashboard",
+      });
     } else {
       setError(true);
     }
@@ -97,7 +101,9 @@ export default function Login() {
               )}
             </Form.Item>
           </Form>
-          <p className="cursor-pointer text-primary mt-3">Lupa Kata Sandi?</p>
+          <p className="cursor-pointer text-primary mt-3 hover:underline">
+            Lupa Kata Sandi?
+          </p>
         </div>
       </div>
     </>
